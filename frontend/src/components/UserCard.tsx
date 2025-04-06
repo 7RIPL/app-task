@@ -37,7 +37,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onEdit, onDelete }) => {
   return (
     <Card
       sx={{
-        width: 300, // Фиксированная ширина карточки
+        width: 300,
         p: 2,
         mb: 2,
         cursor: "pointer",
@@ -51,7 +51,6 @@ const UserCard: React.FC<UserCardProps> = ({ user, onEdit, onDelete }) => {
         sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
       />
       <CardContent sx={{ flex: 1 }}>
-        {/* Обрезка длинного текста */}
         <Typography
           variant="h6"
           sx={{
@@ -77,7 +76,6 @@ const UserCard: React.FC<UserCardProps> = ({ user, onEdit, onDelete }) => {
           Место жительства: {user.location}
         </Typography>
         <Box sx={{ mt: 1 }} onClick={(e) => e.stopPropagation()}>
-          {/* Иконки для редактирования и удаления */}
           <IconButton onClick={onEdit} color="primary">
             <EditIcon />
           </IconButton>

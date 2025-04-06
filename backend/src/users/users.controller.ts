@@ -66,6 +66,6 @@ export class UsersController {
     })
   )
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    return { photoUrl: `http://localhost:5000/uploads/${file.filename}` }; // <-- теперь полный путь
+    return { photoUrl: `http://localhost:5000/uploads/${file.filename}` };
   }
 }

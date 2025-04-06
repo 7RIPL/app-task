@@ -26,7 +26,6 @@ const initialState: UsersState = {
   error: null,
 };
 
-// 🔹 Получение списка пользователей с пагинацией
 export const fetchUsers = createAsyncThunk(
   'users/fetchUsers',
   async ({ page = 1, limit = 10 }: { page: number; limit: number }) => {
@@ -34,20 +33,19 @@ export const fetchUsers = createAsyncThunk(
       const response = await axios.get('http://localhost:5000/users', {
         params: { page, limit },
       });
-      return response.data; // { data: User[], total: number }
+      return response.data;
     } catch (error) {
       throw new Error('Failed to fetch users');
     }
   }
 );
 
-// 🔹 Удаление пользователя
 export const deleteUser = createAsyncThunk(
   'users/deleteUser',
   async (id: number) => {
     try {
       await axios.delete(`http://localhost:5000/users/${id}`);
-      return id; // Возвращаем ID удалённого пользователя
+      return id;
     } catch (error) {
       throw new Error('Failed to delete user');
     }
@@ -60,7 +58,6 @@ const usersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Обработка состояний для fetchUsers
       .addCase(fetchUsers.pending, (state) => {
         state.loading = true;
       })
@@ -74,7 +71,6 @@ const usersSlice = createSlice({
         state.error = action.error.message || 'Error fetching users';
       })
 
-      // Обработка состояний для deleteUser
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.data = state.data.filter((user) => user.id !== action.payload);
         state.total -= 1; // Уменьшаем общее количество пользователей

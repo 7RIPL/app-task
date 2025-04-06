@@ -24,10 +24,9 @@ export const deleteUser = async (id: number) => {
   return response.data;
 };
 
-// 🔹 Новый API метод для загрузки изображений
 export const uploadImage = async (formData: FormData) => {
   return await axios.post("http://localhost:5000/users/upload", formData, {
-    headers: { "Content-Type": "multipart/form-data" }, // Указываем заголовок
+    headers: { "Content-Type": "multipart/form-data" },
   });
 };
 
